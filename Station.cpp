@@ -49,12 +49,12 @@ void Station::StationUnitTest(){
 
     // Getting the names of each station
     std::cout << "\nGetName() testing \n";
-    std::cout << Mumbai_.GetName() << std::endl;
-    std::cout << Delhi_.GetName() << std::endl;
-    std::cout << Bangalore_.GetName() << std::endl;
-    std::cout << Mumbai_.GetName() << std::endl;
-    std::cout << Chennai_.GetName() << std::endl;
-    std::cout << Hyderabad_.GetName() << std::endl;
+    if(Mumbai_.GetName() != std::string("Mumbai")) std::cout << "Mumbai not OKAY \n";
+    else if(Delhi_.GetName() != std::string("Delhi")) std::cout << "Delhi not OKAY \n";
+    else if(Bangalore_.GetName() != std::string("Bangalore")) std::cout << "Bangalore not OKAY \n";
+    else if(Chennai_.GetName() != std::string("Chennai")) std::cout << "Chennai not OKAY\n";
+    else if(Kolkata_.GetName() != std::string("Kolkata")) std::cout << "Kolkata not OKAY\n";
+    else std::cout << "EVERYTHING OKAY in attributes \n";
 
     std::cout << "\nGetDistance() testing \n";
     // Getting the distances between various Stations
@@ -70,23 +70,24 @@ void Station::StationUnitTest(){
     std::cout << "Kolkata   -> Chennai       :   " << Kolkata_.GetDistance(Chennai_) << std::endl;
 
     // Check for any discrepencies
+    std::cout << "\nChecking for discrepencies in distances\n";
     if ( Mumbai_.GetDistance(Delhi_) != 1447.0 ){
-        std::cout << "Error in Distance from Mumbai to Delhi \n";
+        std::cout << " Error in Distance from Mumbai to Delhi \n";
     }
     else if ( Chennai_.GetDistance(Mumbai_) != 1338.0 ){
-        std::cout << "Error in Distance from Chennai to Mumbai \n";
+        std::cout << " Error in Distance from Chennai to Mumbai \n";
     }
     else if ( Bangalore_.GetDistance(Kolkata_) != 1871.0 ){
-        std::cout << "Error in Distance from Bangalore to Chennai \n";
+        std::cout << " Error in Distance from Bangalore to Chennai \n";
     }
     else if (Bangalore_.GetDistance(Bangalore_) != 0){
-        std::cout << "Distance from Bangalore to Bangalore is not zero \n";
+        std::cout << " Distance from Bangalore to Bangalore is not zero \n";
     }
     else if (Kolkata_.GetDistance(Delhi_) != 1472.0){
-        std::cout << "Error in Distance from Kolkata to Delhi \n";
+        std::cout << " Error in Distance from Kolkata to Delhi \n";
     }
     else {
-        std::cout << "\n All clear in distances \n";
+        std::cout << " \n All clear in distances, no ERRORS\n";
     }
 
     
@@ -96,6 +97,32 @@ void Station::StationUnitTest(){
     std::cout << Mumbai_ << std::endl;
     std::cout << Kolkata_ << std::endl;  
     std::cout << Chennai_ << std::endl;
+
+    // Constness Testing
+    const Station s1("Delhi");
+    Station s2("Mumbai");
+    if(s1.GetDistance(s2) != s2.GetDistance(s1)){
+        std::cout << " Const Station fails to call the GetDistance() method \n";
+    }
+    else std::cout << " Const Station can call the GetDistance() method \n";
+
+    // Copy Constructor and assignment operator testing
+    std::cout << "Copy constructor and assignment operator testing \n";
+    s2 = s1;
+    if(s2.GetName() != std::string("Delhi")){
+        std::cout << "Copy assignment operator fails \n";
+    }
+    else{
+        std::cout << "Copy assignment operator is successful \n";
+    }
+
+    Station s3 = s1;
+    if(s3.GetName() != std::string("Delhi")){
+        std::cout << "Copy constructor fails \n";
+    }
+    else{
+        std::cout << "Copy constructor is successful \n";
+    }
 }
 
 

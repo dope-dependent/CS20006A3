@@ -1,0 +1,208 @@
+NAME    - RAJAS BHATT
+ROLL NO - 19CS30037
+VERSION - 1.0.0
+BUGS    - None Detected yet
+
+
+******         DESIGN CONSIDERATIONS FOR RAILWAY RESERVATION SYSTEM        ******
+
+DESIGN OF THE RAILWAY RESERVATION SYSTEM
+
+Date
+    - Three integers have been used for day, month and year
+    - std::maps have been used to store the month - month number conversion, the month
+      to number of days conversion and to store the days of the week, maps have been used
+      for easy access and readability.
+    - Date is constructed using three integers which is a simple layout.
+    - It also has a copy constructor and an overloaded assignment operator because this is 
+      a generic object and it makes sense to include these, and these can be used for something
+      different as well.
+    - PrintDate() prints the date, useful when we have to simply output the date in the console.
+    - GetDate() returns a std::string of the date, which has its use while printing the booking
+
+
+Station
+    - Station HAS-A name which is a std::string
+    - It can initialise with char * as well as std::string because some user may directly put 
+      something like "Mumbai" in the construction parameters and we are avoiding implicit type
+      casting.
+    - Again, like the Date class, it also has a copy constructor and an overloaded assignment 
+      operator because this is a generic object and it makes sense to include these, and these
+      can be used for something different as well, in the same program
+    - Getter method GetName() has been included in order to get the name. Made const to allow const
+      stations to access it. 
+    - Supports a GetDistance() method which takes a station as input and returns the Distance to it
+      by Invoking a member function of the Railways class. This is useful when we have to return
+      the distance to another Station without sending in the current Station as a paremeter.
+
+Railways
+    - Has static vectors sDistStations (Distance between various stations) and sStations which is
+      the list of stations. These have been made static because the User can view them easily
+      and may change the distances if an alternate route is made in between the two cities. 
+      Vectors and std::find have been used here for efficiency.
+    - Constructors, copy constructors, copy assignment operators have been hidden (made private) to
+      prevent the construction of an explicit Railways object.
+    - The static method IndianRailways() returns a constant reference to the singleton object. The 
+      Railways is a singleton class because there exists only ONE railways and we don't need to 
+      construct more than one object of the same. This has been implemented in the form of a 
+      Meyer's singleton, which prevents the use of pointers and memory allocation by returning a static
+      object.
+    - GetDistance() const is a master method which takes two stations as input and returns the distance
+      between them, by accessing them from the respective static vectors using std::find and iterators.
+
+BookingClasses
+    - This is where the various booking classes are implemented. 
+    - The top of the polymorphic hierarchy is constituted by the `BookingClasses` class, which is an 
+      abstract base class. We will be passing around `BookingClasses` pointers to use Polymorphism
+      and access the requested attributes of its children.
+    - Various attributes are stored in the base. It has been decided that these attributes remain in
+      the base Otherwise the code base will become very lengthy. These include name_, seatOrBerth_, 
+      acStatus_, number of tiers etc. 
+    - The getter methods have been defined. These don't necessarily have to be polymorphic because the
+      attributes contain everything.
+    - However, the GetLoadFactor() and the IsLuxury() methods are pure virtual functions as these will
+      return the static variable sLoadFactor defined for each of the 7 classes. The Base class definitely
+      doesn't have a sLoadFactor attribute or a luxury attribute. These will be implemented by our derived
+      classes like ACFirstClass() etc. Basically, since the fareLoadFactor and the luxury status of a 
+      booking class can change with time, these have been implemented as static attributes in the derived 
+      classes.
+    - A large number of defined functions in the base class function have been made inline. 
+    - To prevent flat hierarchies, we are creating a multi stage polymorphic hierarchy. The first
+      distinction is made on whether a specific booking class is a 'SeatClass' or a 'BerthClass'. Now 
+      it can be seen that that subclasses of the 'SeatClass' will have their 'seatOrBerth_' variable to 
+      be set to "Sitting" and similarly for the subclasses of the 'BerthClass'
+    - Since there are still 5 categories of classes in the 'BerthClass', it was decided to again create
+      a stage, now based on the number of Tiers. Therefore 'TwoBerthClass' and 'ThreeBerthClass'
+      were formed. 
+    - As we go down the hierarchy, constructors become less complicated because some of the precedents are
+      already decided by the classes which lie on the top of the hierarchy. For Example, since 'AC2Tier' IS A
+      'TwoBerthClass' IS A 'BerthClass' IS A 'BookingClasses', we see that we need to assign only the name_, 
+      and the acStatus_ while calling the 'TwoBerthClass' portion. Thus the constructors become smaller and 
+      smaller as we insert more and more hierarchy levels.
+    - The destructor has been made virtual in the base class itself.
+
+
+Booking
+    - 'Booking' HAS A 'fromStation_' and a 'toStation_', const because they can't be changed when the booking 
+      is done.
+    - HAS A 'BookingDate' which has not been kept constant to allow for a later stage functionality to change
+      the journey.
+    - 'Booking' HAS A 'class_'. This is where our class type is actually stored. This is a const
+      reference to a specific booking class which will be used for fare computation. This is where Polymorphism
+      comes into action on constant reference base class objects.
+    - It also has a 'bookingStatus_' which is not constant as it can be changed through a later and a
+      'bookingMessage_' which is const for now.
+    - It also has a 'pnr_' const which is assigned as soon as a booking is created. This is constant as the pnr
+      cannot change.
+    - A Passenger pointer is also kept as a nullable entity for future expansion.
+    - 'fareComputed_' stores the fare which has been computed by the system. Even though this is initialised to
+      zero, it is later changed to the computed fare.
+    - In all the static method, only the pnr sequence attribute is non-const because it is incremented to assign 
+      the PNR value. All the other methods are modifiable from the user in the interface ( and that is why they
+      have been kept static). 
+    - The ComputeFare() method has been kept virtual because of possible polymorphic expansions in future. Since
+      it does not change any attribute, it has been kept const. It returns the final computed fare as a double.
+    - sBookings keeps a vector of pointers to all the bookings, this ensures that we always have a list of bookings
+      made, so that the user can get all of them at once. This can also enable future expansions because search
+      functionalities may be added to this.
+    - Apart from a regular constructor, Booking also has a copy constructor. It does not have a copy assignment 
+      operator because it makes no sense to assign one booking to another.
+       
+      
+
+Passenger
+    - Passenger HAS A std::string as a name, HAS A std::string aadharCardNo, HAS A 'Date' as the date of berth.
+    - It also HAS A std::string as gender_, std::string mobile_, std::string category_.
+    - The Passenger class can also be implemented using a polymorphic hierarchy in future expansions.
+
+
+DATA ENCAPSULATION CONSIDERATIONS
+
+    - Attributes have been made private most of the time, except when explicitly needed.
+    - Member functions have been made public most of the time
+    - Default constructors and destructors have been defined wherever needed
+    - Copy Assignment Operators and Copy Constructors have been hidden (i.e. made private) 
+      wherever not needed and well defined wherever needed. In the case of singleton objects, 
+      the constructors have been made private so that the object is not even mistakenly 
+      initialised.
+    - In classes having possible future requirement of Copy Assignment and Copy construction
+      (like the Date and Station), copy constructors and Assignment Operators have been 
+      defined and overloaded respectively.
+    - In every class (except the Railways class, which is singleton), the << Operator has 
+      been overloaded as a friend function. This is to ensure proper debugging and output
+      display instead of defining separate print functions. Otherwise, no other use of friend
+      functions has been done to prevent data decapsulation.
+    - Static members have been made wherever the said attibute may change over time (like
+      fareLoadFactor, LUXURY status, the BASE FARE, etc., which can be changed easily by the 
+      client, please check the README file for more details). Most of the time when the
+      attribute won't change over time, it has been made const static.
+    - Static member functions have been used in the Railways class and all the seven Booking
+      classes, so that we can access these singleton objects easily. Moreover, all the
+      singleton objects have been converted to Meyer's singletons, in order to avoid unnecessary
+      pointers and dynamic memory allocation.
+    - Unit Tests for each class have been included as Static functions of that particular class
+      itself. 
+    - Polymorphism Considerations
+        *   Polymorphism has been used in the case of the BookingClasses.
+            There is an abstract base class (BookingClasses), which gives way to two inherited SeatClass
+            and BerthClass (based on whether the arrangement is seating or sleeping). This is concrete as
+            there is no other format of seating in existence.
+        *   Each BerthClass has two subclasses (depending on the number of tiers, this may change in the
+            future), since this is a major branching and will help to specialise the final booking classes
+            in a better way.    
+        *   All the seven required classes are Meyer's singletons in their respective class hierarchy. A 
+            minimalist hierarchial design has been followed and Polymorphism has also been tested multiple
+            times  in the Unit Tests for correctness.
+        *   All destructors have made virtual.
+    
+
+USE OF STL
+
+    - Instead of raw arrays, STL std::vectors have been used. Their places include storage
+      of the Station cities in the Railways Class. A 2 dimensional vector has been used to store
+      the fixed distance between the cities as described in the Station Distance Matrix of floats.
+    - Instead of bare FOR loops, respective cotainer iterators have been used for looping. This
+      ensures that no implicit type casting is done.
+    - Use of the STL algorithms library has been done wherever needed. This includes the std::find
+      method in the Railways class, where we find a matching station and return the necessary iterator.
+    - Use of std::map has been done in the Date class, where we have used maps to define relations
+      between key-value pairs, like 2 - Feb and so on, this enables easily switching in the date formats
+      which can be extended in the future.
+    - Use of std::string has been done everywhere where usage of strings is required. No use of C style
+      strings has been done at all. This is to keep our implementation modern and also to allow access
+      to the std::string's overloaded + Operator which has been used in many places. Raw strings have
+      always been converted to C++ strings in the constructors.
+
+
+POINTERS AND REFERENCES
+    - Use of pointers has been minimised. Pointers have only been used in user specific
+      demands, like the List of Bookings in the `Booking` class, and while defining null-able
+      entities like the Passenger class. 
+    - Call by value has not been used in this Project. This is because of efficiency reasons.
+      Also, we have not made copy constructors public in many Booking classes. Therefore, 
+      almost all parameters have been called using const references.
+    - Dynamic memory allocation has not been used in this project to prevent unnecessary memory
+      leaks.
+    - Uses of const:
+        *   const has been used wherever possible. Attributes have been made const when they
+            remain constant after instantiation, which is true for most of our attributes like 
+            name, booking, date, etc.
+        *   Member functions have been made const whenever they don't change any object attributes,
+            which is true for most of the member functions. This also adds support for const objects.
+        *   All return objects from singleton classes have been made const. Singleton objects are returned
+            as const references to the given objects. 
+    
+    - Uses of inline:
+        *   Inline has been used where a separate implementation was not needed in the .cpp files.
+            This has been mostly done for single-lined functions which return a value, mostly getter
+            methods.
+    
+*****************************************************************************************************************
+    
+    
+
+
+
+    
+
+     

@@ -167,6 +167,17 @@ void ACFirstClass::UnitTestACFirstClass(){
         std::cout << " Sitting/Sleeping = " << ACFirstClass::Type().IsSitting() << " is correct \n";
     }
 
+    std::cout << " +++ Static Method Testing \n";
+    if (ACFirstClass::Type().GetLoadFactor() != ACFirstClass::sFareLoadFactor){
+        std::cout << " Load factor is incorrect \n";
+    }
+    else std::cout << " Load factor is correct \n";
+
+    if (ACFirstClass::Type().IsLuxury() != ACFirstClass::sLuxury ){
+        std::cout << " Luxury status is not correct  \n";
+    }
+    else std::cout << " Luxury status is correct \n";
+
     std::cout << " +++ Singleton Testing \n";
     if( &ACFirstClass::Type() != &ACFirstClass::Type()){
         std::cout << " The objects are different, not a singleton class!\n";
@@ -212,6 +223,17 @@ void AC2Tier::UnitTestAC2Tier(){
         std::cout << " Sitting/Sleeping = " << AC2Tier::Type().IsSitting() << " is correct \n";
     }
 
+    std::cout << " +++ Static Method Testing \n";
+    if (AC2Tier::Type().GetLoadFactor() != AC2Tier::sFareLoadFactor){
+        std::cout << " Load factor is incorrect \n";
+    }
+    else std::cout << " Load factor is correct \n";
+
+    if (AC2Tier::Type().IsLuxury() != AC2Tier::sLuxury ){
+        std::cout << " Luxury status is not correct  \n";
+    }
+    else std::cout << " Luxury status is correct \n";
+
     std::cout << " +++ Singleton Testing \n";
     if( &AC2Tier::Type() != &AC2Tier::Type()){
         std::cout << " The objects are different, not a singleton class!\n";
@@ -255,6 +277,17 @@ void FirstClass::UnitTestFirstClass(){
     else{
         std::cout << " Sitting/Sleeping = " << FirstClass::Type().IsSitting() << " is correct \n";
     }
+    
+    std::cout << " +++ Static Method Testing \n";
+    if (FirstClass::Type().GetLoadFactor() != FirstClass::sFareLoadFactor){
+        std::cout << " Load factor is incorrect \n";
+    }
+    else std::cout << " Load factor is correct \n";
+
+    if (FirstClass::Type().IsLuxury() != FirstClass::sLuxury ){
+        std::cout << " Luxury status is not correct  \n";
+    }
+    else std::cout << " Luxury status is correct \n";
 
     std::cout << " +++ Singleton Testing \n";
     if( &FirstClass::Type() != &FirstClass::Type()){
@@ -300,6 +333,17 @@ void AC3Tier::UnitTestAC3Tier(){
         std::cout << " Sitting/Sleeping =" << AC3Tier::Type().IsSitting() << " is correct \n";
     }
 
+    std::cout << " +++ Static Method Testing \n";
+    if (AC3Tier::Type().GetLoadFactor() != AC3Tier::sFareLoadFactor){
+        std::cout << " Load factor is incorrect \n";
+    }
+    else std::cout << " Load factor is correct \n";
+
+    if (AC3Tier::Type().IsLuxury() != AC3Tier::sLuxury ){
+        std::cout << " Luxury status is not correct  \n";
+    }
+    else std::cout << " Luxury status is correct \n";
+
     std::cout << " +++ Singleton Testing \n";
     if( &AC3Tier::Type() != &AC3Tier::Type()){
         std::cout << " The objects are different, not a singleton class!\n";
@@ -343,6 +387,17 @@ void Sleeper::UnitTestSleeper(){
     else{
         std::cout << " Sitting/Sleeping = " << Sleeper::Type().IsSitting() << " is correct \n";
     }
+    
+    std::cout << " +++ Static Method Testing \n";
+    if (Sleeper::Type().GetLoadFactor() != Sleeper::sFareLoadFactor){
+        std::cout << " Load factor is incorrect \n";
+    }
+    else std::cout << " Load factor is correct \n";
+
+    if (Sleeper::Type().IsLuxury() != Sleeper::sLuxury ){
+        std::cout << " Luxury status is not correct  \n";
+    }
+    else std::cout << " Luxury status is correct \n";
 
     std::cout << " +++ Singleton Testing \n";
     if( &Sleeper::Type() != &Sleeper::Type()){
@@ -381,6 +436,16 @@ void ACChairCar::UnitTestACChairCar(){
         std::cout << " Sitting/Sleeping = " << ACChairCar::Type().IsSitting() << " is correct \n";
     }
 
+    std::cout << " +++ Static Method Testing \n";
+    if (ACChairCar::Type().GetLoadFactor() != ACChairCar::sFareLoadFactor){
+        std::cout << " Load factor is incorrect \n";
+    }
+    else std::cout << " Load factor is correct \n";
+    if (ACChairCar::Type().IsLuxury() != ACChairCar::sLuxury ){
+        std::cout << " Luxury status is not correct  \n";
+    }
+    else std::cout << " Luxury status is correct \n";
+
     std::cout << " +++ Singleton Testing \n";
     if( &ACChairCar::Type() != &ACChairCar::Type()){
         std::cout << " The objects are different, not a singleton class!\n";
@@ -417,6 +482,16 @@ void SecondSitting::UnitTestSecondSitting(){
         std::cout << " Sitting/Sleeping = " << SecondSitting::Type().IsSitting() << " is correct \n";
     }
 
+    std::cout << " +++ Static Method Testing \n";
+    if (SecondSitting::Type().GetLoadFactor() != SecondSitting::sFareLoadFactor){
+        std::cout << " Load factor is incorrect \n";
+    }
+    else std::cout << " Load factor is correct \n";
+    if (SecondSitting::Type().IsLuxury() != SecondSitting::sLuxury ){
+        std::cout << " Luxury status is not correct  \n";
+    }
+    else std::cout << " Luxury status is correct \n";
+
     std::cout << " +++ Singleton Testing \n";
     if( &SecondSitting::Type() != &SecondSitting::Type()){
         std::cout << " The objects are different, not a singleton class!\n";
@@ -432,6 +507,7 @@ void SecondSitting::UnitTestSecondSitting(){
 
 // UNIT TEST FOR THE POLYMORPHIC HIERARCHY USING THE BASE CLASS
 void BookingClasses::BookingClassUnitTest(){
+
     std::cout << "----- POLYMORPHIC FUNCTIONALITY TESTING ----- \n";
     const BookingClasses *c = &SecondSitting::Type();
     std::cout << c->GetName() << " :" << c->GetLoadFactor() << std::endl;
@@ -452,6 +528,20 @@ void BookingClasses::BookingClassUnitTest(){
 
     c = &FirstClass::Type();
     std::cout << c->GetName() << " :" << c->GetLoadFactor() << std::endl;
+
+    std::cout << "----- ATTRIBUTE CHECKING -----\n";
+    if(c->name_ != std::string("First Class")) std::cout << "Error in name\n";
+    else if(c->acStatus_ == true) std::cout << "Error in the AC Status \n";
+    else if(c->seatOrBerth_ == std::string("Seating")) std::cout << "Error in the Seating Status \n";
+    else if(c->tiers_ != 2) std::cout << "Error in the number of tiers \n";
+    else std::cout << "All attributes are correct. Attribute Checking Successful \n";
+
+    std::cout << "----- GETTER METHOD CHECKING ----- \n";
+    if(c->GetName() != std::string("First Class")) std::cout << "Error in name\n";
+    else if(c->IsAc() == true) std::cout << "Error in the AC Status \n";
+    else if(c->IsSitting() == std::string("Seating")) std::cout << "Error in the Seating Status \n";
+    else if(c->GetNumberOfTiers() != 2) std::cout << "Error in the number of tiers \n";
+    else std::cout << "All getter methods are correct. Attribute Checking Successful \n";
 
     std::cout << "----- CHECKING THAT WE REALLY HAVE SINGLETON CLASSES ----- \n";
     std::cout << &ACChairCar::Type() << " " << &ACChairCar::Type() << std::endl;

@@ -140,46 +140,52 @@ void Date::DateUnitTest(){
 
     // Print the date
     std::cout << " +++ Overloaded << operator \n";
-    std::cout << d << std::endl;
+    std::cout << " " << d << std::endl;
     
     // Get the date in requested format
-    std::cout << d.GetDate() << std:: endl;
-    if(d.GetDate() != std::string("05/Jul/2021")){
-        std::cout << "ERROR : The date is invalid\n";
+    std::cout << " " << d.GetDate() << std:: endl;
+    if(d.GetDate() != std::string("05/Mar/2021")){
+        std::cout << " ERROR : The date is invalid\n";
     }
     else{
-        std::cout << "The date is valid\n";
+        std::cout << " The date is valid\n";
     }
 
+    // Check if the date has 11 characters in the string form
+    std::cout << " +++ Check Date length \n";
+    if(d.GetDate().length() != 11 ) std::cout << " Error in length, Date length is not 11 characters \n";
+    else std::cout << " Date length is 11 characters \n";
+
     // Use the PrintDate function to print the date
+    std::cout << "\t";
     d.PrintDate();
 
     // Printing the months using iterators
     std::cout << " +++ Month testing using iterators\n";
     for (std::pair<int, std::string> c : sMonthIndex){
-        std::cout << c.first << " " << c.second << std::endl;
+        std::cout << " " << c.first << " : " << c.second << std::endl;
     }
 
     // Some error analysis
     if (sMonthIndex[2] != std::string("Feb")){
-        std::cout << "ERROR : Month with index 2 is not February \n";
+        std::cout << " ERROR : Month with index 2 is not February \n";
     }
     else{
-        std::cout << "sMonthIndex[2] = Feb\n"; 
+        std::cout << " sMonthIndex[2] = Feb\n"; 
     }
 
     if (sMonthIndex[7] != std::string("Jul")){
-        std::cout << "ERROR : Month with index 7 is not July \n";
+        std::cout << " ERROR : Month with index 7 is not July \n";
     }
     else{
-        std::cout << "sMonthIndex[7] = Jul\n"; 
+        std::cout << " sMonthIndex[7] = Jul\n"; 
     }
 
     if ( sMonthIndex[d.month_] != std::string("Mar")){
-        std::cout << "ERROR : Month with index "<< d.month_<< "is not Mar \n";
+        std::cout << " ERROR : Month with index "<< d.month_<< "is not Mar \n";
     }
     else{
-        std::cout << "Fine, the month for " << d << " is Mar\n"; 
+        std::cout << " Fine, the month for " << d << " is Mar\n"; 
     }
     // Now checking the copy constructors and the assignment operators
     std::cout << " +++ Copy Assignment \n";
@@ -205,8 +211,32 @@ void Date::DateUnitTest(){
     Date h(29, 2, 2000);    // Normal Construction
     std::cout << " +++ Constructing (29/2/2020) \n";
     Date i(29, 2, 2020);
-    std::cout << i << std::endl;
+    std::cout << " " << i << std::endl;
 
-    std::cout << " +++ Constructing (29/2/2019) \n";
-    Date j(29, 2, 2019);
+    // std::cout << " +++ Constructing (29/2/2019) \n";         // Throws error
+    // Date j(29, 2, 2019);
+
+    std::cout << " +++ Checking the Month vs Number of Days for a date 13/03/2021\n";
+    Date k(13, 3, 2021);
+
+    if(sMonthDays[sMonthIndex[k.month_]] != 31){
+        std::cout << " March does not have 31 days!\n";
+    }
+    else{
+        std::cout << " March has 31 days!\n";
+    }
+    
+    std::cout << " +++ Checking the names of days of the week \n";
+
+    for(std::pair<int, std::string> x : sDayIndex){
+        std::cout << " " << x.first << " : " << x.second << std::endl;
+    }
+
+    std::cout << " +++ Checking if all the attributes are properly assigned \n";
+    if(k.day_ != 13) std::cout << " Error in day \n";
+    else if(k.month_ != 3) std::cout << " Error in month \n";
+    else if(k.year_ != 2021) std::cout << " Error in year \n";
+    else std::cout << " All attributes for Date 13/03/2021 are correct!\n";
+
+
 }   

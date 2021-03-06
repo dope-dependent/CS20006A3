@@ -14,7 +14,7 @@ class Station{
     std::string name_;              // Station HAS-A name, accumulation
 public:  
     
-    Station(std::string name = ""); // Default constructor, user should be able to construct a station
+    Station(std::string name); // constructor, user should be able to construct a station
     Station(const char*);
     Station(const Station &);       // Copy Constructor    
     Station & operator=(const Station &);   // Copy Assignment operator

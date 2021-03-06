@@ -57,6 +57,9 @@ void Railways::RailwaysUnitTest(){
     Station Kolkata_("Kolkata");
     Station Bangalore_("Bangalore");
     Station Chennai_("Chennai");
+    const Station cMumbai_("Mumbai");
+    const Station cDelhi_ ("Delhi");
+    const Station cKolkata_("Kolkata");
 
     std::cout << "Mumbai    -> Delhi         :   " << Railways::IndianRailways().GetDistance(Mumbai_, Delhi_) << std::endl;
     std::cout << "Mumbai    -> Bangalore     :   " << Railways::IndianRailways().GetDistance(Mumbai_, Bangalore_) << std::endl;
@@ -76,22 +79,31 @@ void Railways::RailwaysUnitTest(){
     std::cout << "Chennai   -> Kolkata       :   " << Railways::IndianRailways().GetDistance(Chennai_, Kolkata_) << std::endl;
     std::cout << "Kolkata   -> Delhi         :   " << Railways::IndianRailways().GetDistance(Kolkata_, Delhi_) << std::endl;
     
-    if ( Mumbai_.GetDistance(Delhi_) != 1447.0 ){
+    if ( Railways::IndianRailways().GetDistance(Delhi_, Mumbai_) != 1447.0 ){
         std::cout << "ERROR in Distance from Mumbai to Delhi \n";
     }
-    else if ( Chennai_.GetDistance(Mumbai_) != 1338.0 ){
-        std::cout << "ERROR in Distance from Chennai to Mumbai \n";
+    else if ( Railways::IndianRailways().GetDistance(Delhi_, cMumbai_) != 1447.0 ){
+        std::cout << "ERROR in Distance from const Mumbai to Delhi \n";
     }
-    else if ( Bangalore_.GetDistance(Kolkata_) != 1871.0 ){
+    else if ( Railways::IndianRailways().GetDistance(cDelhi_, Mumbai_) != 1447.0 ){
+        std::cout << "ERROR in Distance from Mumbai to const Delhi \n";
+    }
+    else if ( Railways::IndianRailways().GetDistance(cDelhi_, cMumbai_) != 1447.0 ){
+        std::cout << "ERROR in Distance from const Mumbai to const Delhi \n";
+    }
+    else if ( Railways::IndianRailways().GetDistance(Chennai_, cMumbai_) != 1338.0 ){
+        std::cout << "ERROR in Distance from Chennai to const Mumbai \n";
+    }
+    else if ( Railways::IndianRailways().GetDistance(Bangalore_, Chennai_) != 350.0 ){
         std::cout << "ERROR in Distance from Bangalore to Chennai \n";
     }
-    else if (Bangalore_.GetDistance(Bangalore_) != 0){
+    else if ( Railways::IndianRailways().GetDistance(Bangalore_, Bangalore_) != 0){
         std::cout << "Distance from Bangalore to Bangalore is not zero \n";
     }
-    else if (Kolkata_.GetDistance(Delhi_) != 1472.0){
+    else if ( Railways::IndianRailways().GetDistance(Kolkata_, Delhi_) != 1472.0){
         std::cout << "ERROR in Distance from Kolkata to Delhi \n";
     }
-    else if (Chennai_.GetDistance(Delhi_) != 2180.0){
+    else if ( Railways::IndianRailways().GetDistance(Chennai_, Delhi_) != 2180.0){
         std::cout << "ERROR in Distance from Chennai to Delhi \n";
     }
     else {

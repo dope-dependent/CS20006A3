@@ -25,13 +25,13 @@ private:
 
     double fareComputed_;                           // Booking HAS A fareComputed_
 
-    Passenger *passenger_;                    // Supports Passenger as a NULLable parameter
+    Passenger *passenger_;                          // Supports Passenger as a NULLable parameter
     
     // Static Members
-    static const double sBaseFarePerKM;              // sBaseFarePerKM is the base fare per KM, modifiable by the user
+    static const double sBaseFarePerKM;             // sBaseFarePerKM is the base fare per KM, modifiable by the user
     static int sBookingPNRSerial;                   // sBookingPNRSerial is the incremental next PNR
-    static const double sACSurcharge;                // sACSurcharge is the modifiable sACSurcharge
-    static const double sLuxuryTaxPercent;           // sLuxuryTaxPercent is the percentage of fare that is added
+    static const double sACSurcharge;               // sACSurcharge is the modifiable sACSurcharge
+    static const double sLuxuryTaxPercent;          // sLuxuryTaxPercent is the percentage of fare that is added
     
     // If sLuxuryTaxPercent = x, then fare = fare * (1 + x)
     Booking & operator=(const Booking &);           // Copy Assignment Operator blocked, makes no sense to assign one booking to another

@@ -1,0 +1,494 @@
+NAME    - RAJAS BHATT
+ROLL NO - 19CS30037
+VERSION - 1.0.0
+BUGS    - None Detected yet
+
+This document deals with all the test plans and the methods adopted
+while testing these classes.  
+
+**** UNIT TEST PLANS FOR RAILWAY RESERVATION SYSTEM **** 
+
+**** DATE CLASS ****
++++ Unit Test Plan for 'Date' Class +++
+    1   Check all the constructors and proper instantiation
+        -   Negative date types are not allowed, the program should terminate
+        -   Months with index > 12 should not be allowed
+        -   Copy constructors should do attribute wise Copy
+        -   Copy assignment operator testing 
+        -   Check all members
+    
+    2   Print date prints the output in the specified format DD/mmm/YYYY
+
+    3   Get date returns a string in the proper format DD/mmm/YYYY  
+        -   The number of characters should always be 11
+        -   Compare it with the hard coded string 
+    
+
+    4   Test monthnames, daynames and number of days in each month
+
++++ Golden Output for the Date Class
+
+ +++ Construction 
+ +++ Overloaded << operator 
+ 05/Mar/2021
+ 05/Mar/2021
+ The date is valid
+ +++ Check Date length 
+ Date length is 11 characters 
+        05/Mar/2021
+ +++ Month testing using iterators
+ 1 : Jan
+ 2 : Feb
+ 3 : Mar
+ 4 : Apr
+ 5 : May
+ 6 : Jun
+ 7 : Jul
+ 8 : Aug
+ 9 : Sep
+ 10 : Oct
+ 11 : Nov
+ 12 : Dec
+ sMonthIndex[2] = Feb
+ sMonthIndex[7] = Jul
+ Fine, the month for 05/Mar/2021 is Mar
+ +++ Copy Assignment 
+ c = 03/Apr/2020        &c = 0x7ffe0b28c98c
+ d = 05/Mar/2021        &d = 0x7ffe0b28c980
+ --- Executing c = d 
+ c = 05/Mar/2021        &c = 0x7ffe0b28c98c
+ d = 05/Mar/2021        &d = 0x7ffe0b28c980
+ +++ Copy Construction 
+ --- Executing c(d) 
+ e = 05/Mar/2021        &e = 0x7ffe0b28c98c
+ d = 05/Mar/2021        &d = 0x7ffe0b28c980
+ +++ Constructing (29/2/2020) 
+ 29/Feb/2020
+ +++ Checking the Month vs Number of Days for a date 13/03/2021
+ March has 31 days!
+ +++ Checking the names of days of the week 
+ 1 : Mon
+ 2 : Tue
+ 3 : Wed
+ 4 : Thu
+ 5 : Fri
+ 6 : Sat
+ 7 : Sun
+ +++ Checking if all the attributes are properly assigned 
+ All attributes for Date 13/03/2021 are correct!
+
+
+**** STATION CLASS ****
++++ Unit Test Plan for 'Station' Class +++
+    1   Check attributes
+
+    2   Check constructors
+        -   Check constructor using std::string
+        -   Check constructor using const char * ( i.e. string literal )
+        -   Check copy constructor and copy assignment operator
+    
+    3   Check the GetName() function and also match with hardcoded output
+        -   Check for constness by checking if the method can be called for 
+            both const and non-const object
+
+    4   Check the GetDistance() function by checking form hardcoded distances
+
+
++++ Golden Output for the 'Station' Class
+  
+  ++++ UNIT TEST FOR Station CLASS ++++ 
+
+  GetName() testing 
+  EVERYTHING OKAY in attributes 
+
+  GetDistance() testing 
+  Mumbai    -> Delhi         :   1447
+  Mumbai    -> Bangalore     :   981
+  Mumbai    -> Kolkata       :   2014
+  Mumbai    -> Chennai       :   1338
+  Delhi     -> Bangalore     :   2150
+  Delhi     -> Kolkata       :   1472
+  Delhi     -> Chennai       :   2180
+  Bangalore -> Kolkata       :   1871
+  Bangalore -> Chennai       :   350
+  Kolkata   -> Chennai       :   1659
+
+  Checking for discrepencies in distances
+ 
+   All clear in distances, no ERRORS
+
+   << operator testing
+  Delhi
+  Mumbai
+  Kolkata
+  Chennai
+   Const Station can call the GetDistance() method 
+  Copy constructor and assignment operator testing 
+  Copy assignment operator is successful 
+  Copy constructor is successful 
+
+
+
+
+
+**** RAILWAYS CLASS ****
+
++++ Unit Test Plan for 'Railways' Class +++
+    1   Always Returns Singleton object
+        -   The address should always be the same and should never change
+        -   Each call to Railways::IndianRailways() should return the same object
+    
+    2   Check distances between Stations
+        -   Should give required distances between stations as given
+        -   Since GetDistance() is const it should work with both const and non-const Stations
+    
++++ Golden Output for 'Railways' Class +++
+
+ ++++ UNIT TEST FOR Railways CLASS ++++ 
+    Mumbai    -> Delhi         :   1447
+    Mumbai    -> Bangalore     :   981
+    Mumbai    -> Kolkata       :   2014
+    Mumbai    -> Chennai       :   1338
+    Delhi     -> Bangalore     :   2150
+    Delhi     -> Kolkata       :   1472
+    Delhi     -> Chennai       :   2180
+    Bangalore -> Kolkata       :   1871
+    Bangalore -> Chennai       :   350
+    Kolkata   -> Chennai       :   1659
+
+    Station names but in reverse order 
+    Delhi     -> Mumbai        :   1447
+    Chennai   -> Bangalore     :   350
+    Chennai   -> Kolkata       :   1659
+    Kolkata   -> Delhi         :   1472
+
+     All clear in distances 
+
+    Testing if the class is really singleton 
+    The class returns same instances even when called at different times
+    Address : 0x558289cd4199
+
+
+**** BOOKING CLASS ****
+
++++ Unit Test Plan for the Base Booking Class +++ 
+    In the Unit Test Plan for the Base Booking Class, ensure the following
+    1   Polymorphism Testing 
+        -   Get references to various objects of the derived classes and assign them 
+            to a const reference of the base class and then call important methods.
+        -   Try to access the attributes and see if they work well 
+        -   Check all the getter methods and see if they work well
+        -   Use typeid operator in both vectors and raw arrays of BookingClass & to
+            test Polymorphism
+    
+    2   Check that the derived classes are really singleton classes by getting the same
+        object twice and then checking their addresses
+
+    In the Unit Test Plan for the Derived Booking Class, ensure the following
+
+    1   Check the << operator
+    2   Check all the getter methods to see if the inheritance works
+    3   Check if all the objects returned from ACFirstClass::Type() are singleton
+    4   Static Method Testing
+        -   Check IsLuxury() method
+        -   Check GetLoadFactor() method 
+
+    
++++ Golden Output for 'BookingClass' Class +++
+
+
+    ----- POLYMORPHIC FUNCTIONALITY TESTING ----- 
+    Second Sitting :0.5
+    AC First Class :3
+    AC Chair Car :1.25
+    AC 2 Tier :2
+    AC 3 Tier :1.75
+    Sleeper :1
+    First Class :2
+    ----- ATTRIBUTE CHECKING -----
+    All attributes are correct. Attribute Checking Successful 
+    ----- GETTER METHOD CHECKING ----- 
+    All getter methods are correct. Attribute Checking Successful 
+    ----- CHECKING THAT WE REALLY HAVE SINGLETON CLASSES ----- 
+    0x56128276b180 0x56128276b180
+    0x56128276b240 0x56128276b240
+    0x56128276b2a0 0x56128276b2a0
+    0x56128276b360 0x56128276b360
+    0x56128276b300 0x56128276b300
+    0x56128276b3c0 0x56128276b3c0
+    0x56128276b1e0 0x56128276b1e0
+
+    ----- CHECKING TYPE IDs IN A VECTOR ----- 
+    PK14BookingClasses : 12ACFirstClass
+    Travel Class: AC First Class
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : Yes
+
+    PK14BookingClasses : 10ACChairCar
+    Travel Class: AC Chair Car
+    : Mode        : Sitting
+    : Comfort     : AC
+    : Bunks       : 0
+    : Luxury      : No
+
+    PK14BookingClasses : 7AC2Tier
+    Travel Class: AC 2 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : No
+
+    PK14BookingClasses : 7AC3Tier
+    Travel Class: AC 3 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 3
+    : Luxury      : No
+
+    PK14BookingClasses : 7Sleeper
+    Travel Class: Sleeper
+    : Mode        : Sleeping
+    : Comfort     : Non-AC
+    : Bunks       : 3
+    : Luxury      : No
+
+    PK14BookingClasses : 10FirstClass
+    Travel Class: First Class
+    : Mode        : Sleeping
+    : Comfort     : Non-AC
+    : Bunks       : 2
+    : Luxury      : Yes
+
+    PK14BookingClasses : 13SecondSitting
+    Travel Class: Second Sitting
+    : Mode        : Sitting
+    : Comfort     : Non-AC
+    : Bunks       : 0
+    : Luxury      : No
+
+
+    ----- CHECKING TYPE IDs IN AN ARRAY ----- 
+    PPK14BookingClasses : 12ACFirstClass
+    PPK14BookingClasses : 10ACChairCar
+    PPK14BookingClasses : 7AC2Tier
+    PPK14BookingClasses : 7AC3Tier
+    PPK14BookingClasses : 7Sleeper
+    PPK14BookingClasses : 10FirstClass
+    PPK14BookingClasses : 13SecondSitting
+
++++ Golden Output for the 'ACFirstClass' Class, rest of the Classes are similar +++
+
+
+    +++ Attribute Testing  
+    Name = AC First Class is correct 
+    AC Status = (1) is correct 
+    Number of Tiers = 2 is correct 
+    Sitting/Sleeping = Sleeping is correct 
+    +++ Static Method Testing 
+    Load factor is correct 
+    Luxury status is correct 
+    +++ Singleton Testing 
+    The objects are the same, a singleton class!
+    +++ Checking the << operator 
+   Travel Class: AC First Class
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : Yes
+
+
+**** BOOKING ****
++++ Unit Test Plan for Booking +++
+    1   Constructors 
+        -   Check the regular constructor and print the Booking  
+        -   Check the copy constructor and print the Booking. If the object is copied, the pnr should not change.
+    
+    2   Attributes 
+        -   Check all the attributes, both static and user constructed
+        -   After making all bookings, check the sBooking list and test it 
+    
+    3   Member Functions   
+        -   ComputeFare()   Check different scenarios and test from the hardcoded input
+        -   Overloaded <<   Check the Overloaded << operator so that it prints the right thing
+
+
++++ Golden Output for Booking +++
+    Checking the ComputeFare() method and the copy constructor as well
+    Checking all the attributes of the booking 
+    Attributes are fine.
+    Checking all the static attributes 
+    Static Attributes are fine 
+    Fare as expected 
+    BOOKING SUCEEDED:
+    PNR Number = 1
+    From Station = Delhi
+    To Station = Mumbai
+    Travel Date = 23/Apr/2020
+    Travel Class: AC First Class
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : Yes
+    Fare = 2776
+
+
+    Correct Name of the Class 
+    Fare as expected 
+    BOOKING SUCEEDED:
+    PNR Number = 2
+    From Station = Bangalore
+    To Station = Chennai
+    Travel Date = 23/May/2021
+    Travel Class: AC Chair Car
+    : Mode        : Sitting
+    : Comfort     : AC
+    : Bunks       : 0
+    : Luxury      : No
+    Fare = 269
+
+
+    Correct Name of the Class 
+    Fare as expected 
+    BOOKING SUCEEDED:
+    PNR Number = 3
+    From Station = Kolkata
+    To Station = Mumbai
+    Travel Date = 30/Jul/2021
+    Travel Class: AC 2 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : No
+    Fare = 2064
+
+
+    Correct Name of the Class 
+    Fare as expected 
+    BOOKING SUCEEDED:
+    PNR Number = 4
+    From Station = Chennai
+    To Station = Delhi
+    Travel Date = 02/Feb/2022
+    Travel Class: AC 3 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 3
+    : Luxury      : No
+    Fare = 1958
+
+
+    Correct Name of the Class 
+    Fare as expected 
+    BOOKING SUCEEDED:
+    PNR Number = 5
+    From Station = Delhi
+    To Station = Bangalore
+    Travel Date = 05/Jun/2021
+    Travel Class: First Class
+    : Mode        : Sleeping
+    : Comfort     : Non-AC
+    : Bunks       : 2
+    : Luxury      : Yes
+    Fare = 2688
+
+
+    Correct Name of the Class 
+    Checking the regular constructor
+    Fare as expected 
+    BOOKING SUCEEDED:
+    PNR Number = 6
+    From Station = Delhi
+    To Station = Bangalore
+    Travel Date = 05/Jun/2021
+    Travel Class: AC 2 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : No
+    Fare = 2200
+
+
+    Correct Name of the Class 
+    Checking the list of bookings 
+    BOOKING SUCEEDED:
+    PNR Number = 1
+    From Station = Delhi
+    To Station = Mumbai
+    Travel Date = 23/Apr/2020
+    Travel Class: AC First Class
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : Yes
+    Fare = 2776
+
+
+    BOOKING SUCEEDED:
+    PNR Number = 2
+    From Station = Bangalore
+    To Station = Chennai
+    Travel Date = 23/May/2021
+    Travel Class: AC Chair Car
+    : Mode        : Sitting
+    : Comfort     : AC
+    : Bunks       : 0
+    : Luxury      : No
+    Fare = 269
+
+
+    BOOKING SUCEEDED:
+    PNR Number = 3
+    From Station = Kolkata
+    To Station = Mumbai
+    Travel Date = 30/Jul/2021
+    Travel Class: AC 2 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : No
+    Fare = 2064
+
+
+    BOOKING SUCEEDED:
+    PNR Number = 4
+    From Station = Chennai
+    To Station = Delhi
+    Travel Date = 02/Feb/2022
+    Travel Class: AC 3 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 3
+    : Luxury      : No
+    Fare = 1958
+
+
+    BOOKING SUCEEDED:
+    PNR Number = 5
+    From Station = Delhi
+    To Station = Bangalore
+    Travel Date = 05/Jun/2021
+    Travel Class: First Class
+    : Mode        : Sleeping
+    : Comfort     : Non-AC
+    : Bunks       : 2
+    : Luxury      : Yes
+    Fare = 2688
+
+
+    BOOKING SUCEEDED:
+    PNR Number = 6
+    From Station = Delhi
+    To Station = Bangalore
+    Travel Date = 05/Jun/2021
+    Travel Class: AC 2 Tier
+    : Mode        : Sleeping
+    : Comfort     : AC
+    : Bunks       : 2
+    : Luxury      : No
+    Fare = 2200
+
+
+
+**** APPLICATION TEST PLANS FOR RAILWAY RESERVATION SYSTEM ****

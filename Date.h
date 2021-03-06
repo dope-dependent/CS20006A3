@@ -22,12 +22,12 @@ class Date{
         static std::map<std::string, int> sMonthDays;     // Keeps track of the number of days in the month
 
     public:
-        Date(int,int,int);              // Construct the dates from three integers
-        Date(const Date &);             // Copy constructor
-        Date &operator=(const Date &);  // Copy assignment
-        ~Date();                        // Destructor
-        void PrintDate() const;         // Print the date in the format mentioned above
-        std::string GetDate() const;    // Get the date in the format mentioned as a string
+        Date(int,int,int);                     // Construct the dates from three integers
+        Date(const Date &);                    // Copy constructor
+        Date &operator=(const Date &);         // Copy assignment
+        ~Date();                               // Destructor
+        void PrintDate() const;                // Print the date in the format mentioned above
+        std::string GetDate() const;           // Get the date in the format mentioned as a string
         // To print the date in the requested format
         // << operators have to be overloaded to use them in their natural syntax
         friend std::ostream & operator<<(std::ostream &os, const Date &d);      

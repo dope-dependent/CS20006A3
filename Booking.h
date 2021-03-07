@@ -30,7 +30,7 @@ private:
 
     double fareComputed_;                           // Booking HAS A fareComputed_
 
-    Passenger passenger_;                           // Supports Passenger as a NULLable parameter
+    const Passenger passenger_;                           // Supports Passenger as a NULLable parameter
     
     // Static Members
     static const double sBaseFarePerKM;             // sBaseFarePerKM is the base fare per KM, modifiable by the user
@@ -43,7 +43,7 @@ private:
 
 public:
     virtual double ComputeFare() const;             // Virtual Method for various types of Bookings in the Future
-    Booking(Station fromStation, Station toStation, Date d, const BookingClasses &c, const Passenger &p = Passenger::sNullPassenger);  
+    Booking(Station fromStation, Station toStation, Date d, const BookingClasses &c, const Passenger &p = Passenger::sNullPassenger());  
     Booking(const Booking &);                       // Copy Constructor 
     inline virtual ~Booking() {};                   // Virtual Destructor For future extensions
     friend ostream & operator<<(ostream & os, const Booking & booking);       // Overloading the << operator for debugging and display

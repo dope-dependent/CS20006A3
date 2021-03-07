@@ -18,5 +18,6 @@
 # ./_App
 # rm _App
 
-g++ -Wall Station.cpp BookingClass.cpp Booking.cpp Passenger.cpp Railways.cpp Date.cpp _App.cpp -o _App
+g++ -Wall Station.cpp Railways.cpp BookingClass.cpp Booking.cpp Passenger.cpp Date.cpp _App.cpp -o _App
 ./_App
+rm _App

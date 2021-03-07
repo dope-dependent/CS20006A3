@@ -34,4 +34,7 @@ Passenger::Passenger(const char * name,
     mobile_(std::string(mobile)), 
     category_(std::string(category)) {}
 
-const Passenger Passenger::sNullPassenger = Passenger();
+const Passenger & Passenger::sNullPassenger(){
+    static Passenger obj;
+    return obj;
+}

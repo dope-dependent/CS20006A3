@@ -17,14 +17,21 @@ of them contains a main() functions. More than one main() function in a given bu
 *   Linux implementation is made using makefile
 *   To run the App.cpp file, enter the following commands 
         make
-        ./App
+
 *   TO run the AppTest.cpp file, enter the following commands
         make test
-        ./AppTest
     
 *   To run the UnitTest.cpp file, enter the following commands
         make unit-test
-        ./UnitTest
+
+*   To run the App.cpp file and output contents in a txt file (AppOutput.txt)
+        make all-text
+
+*   To run the AppTest.cpp file and output contents in a text file (AppTestOutput.txt)
+        make test-text 
+
+*   To run the UnitTest.cpp file and output contents in a text file (UnitTestOutput.txt)
+        make unit-test-text 
 
 APPLICATION AND TESTING FILES
 *   App.cpp

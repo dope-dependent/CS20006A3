@@ -1,0 +1,104 @@
+BOOKING SUCEEDED:
+PNR Number = 1
+From Station = Delhi
+To Station = Mumbai
+Travel Date = 17/May/2021
+Travel Class: AC 3 Tier
+ : Mode        : Sleeping
+ : Comfort     : AC
+ : Bunks       : 3
+ : Luxury      : No
+Fare = 1316
+
+
+BOOKING SUCEEDED:
+PNR Number = 2
+From Station = Mumbai
+To Station = Kolkata
+Travel Date = 12/Jun/2021
+Travel Class: Sleeper
+ : Mode        : Sleeping
+ : Comfort     : Non-AC
+ : Bunks       : 3
+ : Luxury      : No
+Fare = 1007
+
+
+BOOKING SUCEEDED:
+PNR Number = 3
+From Station = Kolkata
+To Station = Bangalore
+Travel Date = 15/May/2021
+Travel Class: AC First Class
+ : Mode        : Sleeping
+ : Comfort     : AC
+ : Bunks       : 2
+ : Luxury      : Yes
+Fare = 3571
+
+
+BOOKING SUCEEDED:
+PNR Number = 4
+From Station = Bangalore
+To Station = Chennai
+Travel Date = 15/Jun/2020
+Travel Class: AC 2 Tier
+ : Mode        : Sleeping
+ : Comfort     : AC
+ : Bunks       : 2
+ : Luxury      : No
+Fare = 400
+
+
+BOOKING SUCEEDED:
+PNR Number = 5
+From Station = Chennai
+To Station = Delhi
+Travel Date = 19/Aug/2021
+Travel Class: First Class
+ : Mode        : Sleeping
+ : Comfort     : Non-AC
+ : Bunks       : 2
+ : Luxury      : Yes
+Fare = 2725
+
+
+BOOKING SUCEEDED:
+PNR Number = 6
+From Station = Mumbai
+To Station = Bangalore
+Travel Date = 12/Jun/2021
+Travel Class: AC 3 Tier
+ : Mode        : Sleeping
+ : Comfort     : AC
+ : Bunks       : 3
+ : Luxury      : No
+Fare = 908
+
+
+BOOKING SUCEEDED:
+PNR Number = 7
+From Station = Mumbai
+To Station = Chennai
+Travel Date = 12/Jun/2021
+Travel Class: AC 2 Tier
+ : Mode        : Sleeping
+ : Comfort     : AC
+ : Bunks       : 2
+ : Luxury      : No
+Fare = 1388
+
+
+BOOKING SUCEEDED:
+PNR Number = 8
+From Station = Mumbai
+To Station = Kolkata
+Travel Date = 05/Jun/2021
+Travel Class: AC 2 Tier
+ : Mode        : Sleeping
+ : Comfort     : AC
+ : Bunks       : 2
+ : Luxury      : No
+Fare = 2064
+
+

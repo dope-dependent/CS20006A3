@@ -22,7 +22,7 @@ class BookingClasses{
 
     public:
         virtual inline ~BookingClasses() {}                 // Destrucctor which does nothing, made virtual for polymorphism
-        virtual inline float GetLoadFactor() const = 0;     // Make sure that this is not called, pure virtual function
+        virtual float GetLoadFactor() const = 0;     // Make sure that this is not called, pure virtual function
         // Getter methods for subclasses
         inline std::string GetName() const { return name_; };
         std::string IsSitting() const;
@@ -36,7 +36,7 @@ class BookingClasses{
             so that they can be implemented in the Derived Classes
         */
 
-        virtual inline bool IsLuxury() const = 0;      // Pure Virtual Function
+        virtual bool IsLuxury() const = 0;      // Pure Virtual Function
         inline int GetNumberOfTiers() const { return tiers_;};  // Get the number of tiers, simple function, inlined
         friend std::ostream & operator<<(std::ostream &os, const BookingClasses & obj);     // Overloading the << operator
 

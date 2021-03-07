@@ -10,40 +10,52 @@ Operating System    -   Ubuntu 20.04 LTS
                         Windows 10
 
 RUNNING THE APPLICATION
-Please note, you cannot build the App.cpp AppTest.cpp and UnitTest.cpp files together because each one
+Please note, you cannot build the _App.cpp _AppTest.cpp and _UnitTest.cpp files together because each one
 of them contains a main() functions. More than one main() function in a given build are not recommended.
 
 ***** LINUX *****
 *   Linux implementation is made using makefile
-*   To run the App.cpp file, enter the following commands 
+*   To run the _App.cpp file, enter the following commands 
         make
 
-*   TO run the AppTest.cpp file, enter the following commands
+*   TO run the _AppTest.cpp file, enter the following commands
         make test
     
-*   To run the UnitTest.cpp file, enter the following commands
+*   To run the _UnitTest.cpp file, enter the following commands
         make unit-test
 
-*   To run the App.cpp file and output contents in a txt file (AppOutput.txt)
+*   To run the _App.cpp file and output contents in a txt file (AppOutput.txt)
         make all-text
 
-*   To run the AppTest.cpp file and output contents in a text file (AppTestOutput.txt)
+*   To run the _AppTest.cpp file and output contents in a text file (AppTestOutput.txt)
         make test-text 
 
-*   To run the UnitTest.cpp file and output contents in a text file (UnitTestOutput.txt)
+*   To run the _UnitTest.cpp file and output contents in a text file (UnitTestOutput.txt)
         make unit-test-text 
 
+***** WINDOWS *****
+*   To compile the _App.cpp file, enter on the terminal
+    g++ -Wall Station.cpp Railways.cpp BookingClass.cpp Booking.cpp Passenger.cpp Date.cpp _App.cpp -o _App.exe
+
+*   To compile the _AppTest.cpp file enter on the terminal
+    g++ -Wall Station.cpp Railways.cpp BookingClass.cpp Booking.cpp Passenger.cpp Date.cpp _AppTest.cpp -o _AppTest.exe
+
+*   To compile the _UnitTest.cpp file enter on the terminal
+    g++ -Wall Station.cpp Railways.cpp BookingClass.cpp Booking.cpp Passenger.cpp Date.cpp _UnitTest.cpp -o _UnitTest.exe
+
+*   Now you can run the respective executables (_App.exe, _AppTest.exe and _UnitTest)
+
 APPLICATION AND TESTING FILES
-*   App.cpp
+*   _App.cpp
     This contains all the modifiable static constants, and is used to run the app. Please change 
     all changeable constants on the top of this file when required. Do NOT delete anything, you 
     should only change their values. All the modifiable attributes have been mentioned at the top
 
-*   AppTest.cpp
+*   _AppTest.cpp
     This contains the application test file which has been given in the assignment. Similar arguments follow 
     as above.
 
-*   UnitTest.cpp
+*   _UnitTest.cpp
     This contains and calls all the Unit Tests (please check the Testplan.txt file). Depending on the class whose
     unit test you need to call, you can comment out the remaining portion.
     Please note that implementation of these tests is done in the respective .cpp files of the respective classes.

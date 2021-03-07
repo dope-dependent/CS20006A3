@@ -14,6 +14,9 @@
 # ./Date_test
 # rm Date_test
 
-g++ -Wall Date.cpp Station.cpp Railways.cpp BookingClass.cpp Booking.cpp Booking_test.cpp -o Booking_test
-./Booking_test
-rm Booking_test
+# g++ -Wall Date.cpp Station.cpp Railways.cpp BookingClass.cpp Booking.cpp Booking_test.cpp -o Booking_test
+# ./Booking_test
+# rm Booking_test
+
+g++ -Wall Date.cpp Station.cpp Railways.cpp BookingClass.cpp Booking.cpp Passenger.cpp App.cpp -o App
+./App

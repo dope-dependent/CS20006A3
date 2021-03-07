@@ -4,29 +4,8 @@
 #include <iostream>
 #include <vector>       // For Polymorphic Hierarchy Unit Test
 #include <typeinfo>     // For Polymorphic Hierarchy Unit Test
-/* EDIT WHEN REQUIRED HERE */
-/* ---------------------------------------------------------------------------------------------- */
 
-// LUXURY STATUS OF VARIOUS CLASSES
-bool ACChairCar::sLuxury = false;
-bool SecondSitting::sLuxury = false;
-bool ACFirstClass::sLuxury = true;
-bool AC2Tier::sLuxury = false;
-bool AC3Tier::sLuxury = false;
-bool FirstClass::sLuxury = true;
-bool Sleeper::sLuxury = false;
 
-// FARE STATUS OF VARIOUS CLASSES
-float ACChairCar::sFareLoadFactor = 1.25;
-float SecondSitting::sFareLoadFactor = 0.5;
-float ACFirstClass::sFareLoadFactor = 3;
-float AC2Tier::sFareLoadFactor = 2;
-float FirstClass::sFareLoadFactor = 2;
-float AC3Tier::sFareLoadFactor = 1.75;
-float Sleeper::sFareLoadFactor = 1;
-
-/* DO NOT EDIT ANYTHING UNDER THIS LINE */
-/* ---------------------------------------------------------------------------------------------- */
 
 // IMPLEMENTATION OF THE VARIOUS CLASSES
 

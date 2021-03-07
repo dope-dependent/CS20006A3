@@ -20,7 +20,10 @@ class Passenger{
     
     public:
         Passenger();
-        virtual ~Passenger();
+        Passenger(std::string, std::string, Date, std::string, std::string, std::string);
+        Passenger(const char *, const char *, Date, const char *, const char *, const char *);
+        virtual inline ~Passenger() {};
+        static const Passenger sNullPassenger;
 };
 
 

@@ -492,3 +492,15 @@ while testing these classes.
 
 
 **** APPLICATION TEST PLANS FOR RAILWAY RESERVATION SYSTEM ****
+The application test mainly tests scenarios which combine many classes.
+In the case of the Railway Reservation System, it basically tests all 
+booking scenarios.
+    1   Check if the Booking scenario works for booking variables, in different
+        situations.
+    2   Check if we can create containers of booking objects (like vectors with ease)
+        and then add new booking and see if this affects our static variables.
+    3   Do type checking of bookings, using the sBookings static attribute.
+    4   Test using booking class references as well.
+    5   Vary the constness of the objects used as parameters.
+
+

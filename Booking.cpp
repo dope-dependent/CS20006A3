@@ -9,18 +9,6 @@
 #include <cmath>
 #include <typeinfo>     // For type information in polymorphism
 
-/*----------------------------------------------------------------------*/
-/*                      MODIFIABLE CONSTANTS                            */    
-
-const double Booking::sBaseFarePerKM = 0.5;                 // Base Fare per KM
-const double Booking::sACSurcharge = 50;                    // AC Surcharge
-const double Booking::sLuxuryTaxPercent = 0.25;             // Percentage of Luxury Tax as a percentage of final computed fare
-                                                            // Final Fare = ( 1 + sLuxuryTaxPercent)*(Fare after AC Surcharge)
-
-/*----------------------------------------------------------------------*/
-
-
-
 // Code
 
 // Construct a Booking
@@ -30,7 +18,7 @@ const double Booking::sLuxuryTaxPercent = 0.25;             // Percentage of Lux
         static because we need to initialise all static variables before an object is
         constructed.
 */
-Booking::Booking(Station fromStation, Station toStation, Date d, const BookingClasses &c, Passenger *p)
+Booking::Booking(Station fromStation, Station toStation, Date d, const BookingClasses &c, const Passenger &p)
         : fromStation_(fromStation), 
         toStation_(toStation), 
         bookingDate_(d),
